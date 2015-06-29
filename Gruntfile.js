@@ -35,7 +35,7 @@ module.exports = function(grunt) {
         },
         dist: {
             files: {
-                'style/main.css': 'style/main.scss'
+                'app/style/main.css': 'app/style/main.scss'
             }
         }
     },
@@ -46,27 +46,64 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          'dist/style/main.min.css': ['style/main.css']
+          'dist/style/main.min.css': ['app/style/main.css']
         }
+      }
+    },
+    htmlmin: {
+      dist: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        expand: true,
+        cwd: 'app',
+        src: ['**/*.html', '*.html'],
+        dest: 'dist/'
       }
     },
     copy: {
       main: {
         files: [
-          {expand: true, src: ['assets/**'], dest: 'dist/'}
+          {expand: true, src: ['assets/**/*'], dest: 'dist/'}
         ]
+      }
+    },
+    watch: {
+      scripts: {
+        files: ['app/*.js', 'app/**/*.js'],
+        tasks: ['browserify', 'uglify'],
+        options: {
+          interrupt: true,
+        },
+      },
+      css: {
+        files: 'app/style/*.scss',
+        tasks: ['sass', 'cssmin'],
+        options: {
+          livereload: true,
+        },
+      },
+      configFiles: {
+        files: [ 'app/**/*.html' ],
+        tasks: ['htmlmin'],
+        options: {
+          reload: true
+        }
       }
     }
   });
 
   // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-sass');
 
   // Default task.
-  grunt.registerTask('default', ['browserify', 'sass', 'uglify', 'cssmin', 'copy']);
+  grunt.registerTask('default', ['browserify', 'sass', 'uglify', 'cssmin', 'htmlmin', 'copy', 'watch']);
 
 };
