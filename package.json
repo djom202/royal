@@ -20,7 +20,7 @@
       "url": "https://github.com/sedinson/royal/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/royal",
+  "main": "dist/index.html",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -38,7 +38,17 @@
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-watch": "~0.4.0",
+    "grunt-ng-annotate": "^1.0.1",
     "grunt-sass": "^1.0.0"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "angular": "^1.4.1",
+    "angular-resource": "^1.4.1",
+    "angular-ui-router": "^0.2.15",
+    "extend": "^2.0.1",
+    "jquery": "^2.1.4",
+    "jquery-ui": "^1.10.5",
+    "lodash": "^3.9.3"
+  }
 }

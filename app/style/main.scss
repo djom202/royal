@@ -29,6 +29,16 @@ ul, li {
 	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.4);
 }
 
+.inner_shadow {
+	-webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+	box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+}
+
+.inner_light_shadow {
+	-webkit-box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
+}
+
 .fill {
 	background: url(../assets/imgs/bg-shadow.png) repeat-y;
 }
@@ -131,29 +141,59 @@ ul, li {
 			}
 		}
 	}
+}
+
+/**
+	Advertisement Slider
+*/
+#ad {
+	position: absolute;
+	width: 347px;
+	top: -14px;
+	right: 0;
 	
-	.ad {
-		position: absolute;
+	.carousel {
 		width: 347px;
-		top: -14px;
-		right: 0;
+		height: 191px;
+		background: #ffc90a url('../assets/imgs/promo-box.png') top no-repeat;
+		position: relative;
+		margin: 0 auto;
+		z-index: 1;
 		
-		.carousel {
-			width: 347px;
-			height: 191px;
-			background: #ffc90a url('../assets/imgs/promo-box.png') top no-repeat;
+		.container {
+			position: relative;
+			width: 100%;
+			height: 260px;
 			overflow: hidden;
-			position: relative;
-			margin: 0 auto;
+			
+			a {
+				position: absolute;
+				text-indent: -9999px;
+				display: block;
+				width: 297px;
+				height: 215px;
+				padding: 0 25px;
+				top: 32px;
+				left: 0;
+				
+				&.download {
+					background: url(../assets/imgs/proms/download.png) no-repeat center top;
+				}
+				
+				&.suscribe {
+					background: url(../assets/imgs/proms/suscribe.png) no-repeat center top;
+				}
+			}
 		}
-		
-		.phone {
-			position: relative;
-			width: 306px;
-			margin: 0 auto;
-			height: 67px;
-			background: #164d83 url('../assets/imgs/phone-bg.jpg') top no-repeat;
-		}
+	}
+	
+	.phone {
+		position: relative;
+		width: 306px;
+		margin: 0 auto;
+		height: 67px;
+		z-index: 0;
+		background: #164d83 url('../assets/imgs/phone-bg.jpg') top no-repeat;
 	}
 }
 
@@ -213,11 +253,74 @@ ul, li {
 	}
 }
 
+.searcher {
+	background: rgb(254, 218, 0) url(../assets/imgs/bg-dg-yellow.jpg) repeat-x;
+	height: 55px;
+	
+	li {
+		display: block;
+		position: relative;
+		float: left;
+		height: 55px;
+		overflow: hidden;
+	}
+	
+	.box {
+		width: 160px;
+		
+		span {
+			text-transform: uppercase;
+			display: block;
+			margin: 7px 20px;
+			color: #fff;
+		}
+		
+		&.blue {
+			background: #216bb2;
+		}
+		
+		&.yellow {
+			background: #cf8617;
+		}
+	}
+	
+	.search {
+		background: url(../assets/imgs/tx.png) repeat;
+		width: 340px;
+		
+		span {
+			position: relative;
+			width: 285px;
+			background: #fff;
+			font-family: 'Arimo', sans-serif;
+			font-size: 0.75em;
+			color: #a7a7a7;
+			display: inline-block;
+			line-height: 29px;
+			padding: 0 8px;
+			margin: 13px 20px;
+			border-radius: 2px;
+			cursor: pointer;
+			
+			b {
+				position: absolute;
+				display: block;
+				width: 33px;
+				height: 29px;
+				background: url(../assets/imgs/chevron-dwn.png) no-repeat center center;
+				background-size: cover;
+				right: 0;
+				top: 0;
+			}
+		}
+	}
+}
+
 /**
 	Body
 */
 #body {
-	min-height: 800px;
+	min-height: 400px;
 }
 
 /**
@@ -354,6 +457,90 @@ ul, li {
 				font-size: 0.6em;
 				letter-spacing: 1px;
 				margin: 0;
+			}
+		}
+	}
+}
+
+#slider {
+	width: 100%;
+	height: 360px;
+}
+
+/**
+	Juqery Slider
+*/
+.jquery-slider {
+	overflow: hidden;
+	background: $top-bg;
+	
+	ul.s-container {
+		position: relative;
+		margin: 0;
+		padding: 0;
+		z-index: 0;
+		
+		li {
+			display: block;
+			position: absolute;
+			margin: 0;
+			padding: 0;
+			z-index: 0;
+			left: 100%;
+			
+			&:first-child {
+				z-index: 1;
+				left: 0;
+			}
+			
+			.s-left-panel {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 250px;
+				height: 100%;
+				padding: 10px;
+				background: rgba(0, 0, 0, 0.8);
+				
+				h2 {
+					color: #fff;
+					margin-top: 50px;
+					font-size: 20px;
+					text-align: center;
+					text-transform: uppercase;
+					
+					span {
+						display: inline-block;
+						font-size: 0.8em;
+						width: 80%;
+						padding: 2.5%;
+						margin: 0 7.5%;
+						background: rgba(190, 190, 190, 0.8);
+						color: #000;
+					}
+				}
+			}
+		}
+	}
+	
+	ul.s-nav {
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 20px;
+		
+		li {
+			display: block;
+			width: 20px;
+			background: rgba(255, 255, 255, 0.7);
+			margin: 5px 0;
+			height: 40px;
+			cursor: pointer;
+			
+			&:hover, &.selected {
+				background: #fff;
 			}
 		}
 	}

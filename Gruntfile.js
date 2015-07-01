@@ -11,21 +11,29 @@ module.exports = function(grunt) {
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    // Task configuration.
+    
     browserify: {
       js: {
-        // A single entry point for our app
         src: 'app/app.js',
-        // Compile to a single file to add a script tag for in your HTML
         dest: 'app/bundle.js',
       },
+    },
+    ngAnnotate: {
+        options: {
+          singleQuotes: true 
+        },
+        royalApp: {
+          files: {
+            'app/bundle.annotate.js': ['app/bundle.js']
+          } 
+        },
     },
     uglify: {
       options: {
         banner: '<%= banner %>'
       },
       dist: {
-        src: 'app/bundle.js',
+        src: 'app/bundle.annotate.js',
         dest: 'dist/app/app.min.js'
       },
     },
@@ -71,8 +79,8 @@ module.exports = function(grunt) {
     },
     watch: {
       scripts: {
-        files: ['app/*.js', 'app/**/*.js'],
-        tasks: ['browserify', 'uglify'],
+        files: ['app/*.js', 'app/**/*.js', '!app/bundle.*'],
+        tasks: ['browserify', 'ngAnnotate', 'uglify'],
         options: {
           interrupt: true,
         },
@@ -101,9 +109,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-sass');
 
   // Default task.
-  grunt.registerTask('default', ['browserify', 'sass', 'uglify', 'cssmin', 'htmlmin', 'copy', 'watch']);
+  grunt.registerTask('default', ['browserify', 'ngAnnotate', 'uglify', 'sass', 'cssmin', 'htmlmin', 'copy', 'watch']);
 
 };

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html ng-app="royalApp" >
   <head>
     <title>Royal Films</title>
     <meta charset="UTF-8">
@@ -38,8 +38,13 @@
             </ul>
           </div>
           
-          <div class="ad">
-            <div class="carousel"></div>
+          <div id="ad">
+            <div class="carousel">
+              <div class="container">
+                <a href="#" class="slide download">Descarga la app</a>
+                <a href="#" class="slide suscribe">Registrate ahora</a>
+              </div>
+            </div>
             <div class="phone"></div>
           </div>
         </div>
@@ -59,13 +64,13 @@
         <div id="main-nav">
           <ul class="menu">
             <li>
-              <a href="#" class="selected">Inicio</a>
+              <a ui-sref="main" class="selected">Inicio</a>
             </li>
             <li>
-              <a href="#">Cartelera</a>
+              <a ui-sref="billboard">Cartelera</a>
             </li>
             <li>
-              <a href="#">Estrenos</a>
+              <a ui-sref="premiere">Estrenos</a>
             </li>
             <li>
               <a href="#">Teatros</a>
@@ -83,12 +88,35 @@
         </div>
       </div>
       
-      <!-- body -->
-      <div id="body">
-        <div class="wrapper shadow fill">
-          
-        </div>
+      <!-- Headers -->
+      <div ui-view="headers"></div>
+      
+      <!-- Searcher -->
+      <div class="wrapper searcher shadow">
+        <ul>
+          <li class="box blue inner_shadow">
+            <span>Buscar por película</span>
+          </li>
+          <li class="search">
+            <span class="inner_light_shadow">
+              Seleccionar Pelicula...
+              <b class="chevron-down"></b>
+            </span>
+          </li>
+          <li class="box yellow inner_shadow">
+            <span>Buscar tu sala favorita</span>
+          </li>
+          <li class="search">
+            <span class="inner_light_shadow">
+              Seleccionar sala...
+              <b class="chevron-down"></b>
+            </span>
+          </li>
+        </ul>
       </div>
+      
+      <!-- body -->
+      <div ui-view="body"></div>
       
       <!-- Footer -->
       <div id="footer" class="shadow">

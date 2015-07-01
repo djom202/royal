@@ -29,7 +29,7 @@ var app = angular.module('royalApp', [
 /**
  * When an error occurs, this method will intercept it
  */
-app.factory('ErrorInterceptor', function ($q) {
+app.factory('ErrorInterceptor', ['$q', function ($q) {
   return {
     responseError: function(rejection) {
       if(rejection.status === 500 && !rejection.data.success) {
@@ -47,7 +47,7 @@ app.factory('ErrorInterceptor', function ($q) {
       return $q.reject(rejection);
     }
   };
-});
+}]);
 
 /**
  * Config
